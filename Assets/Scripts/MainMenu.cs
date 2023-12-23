@@ -7,6 +7,12 @@ public class MainMenu : MonoBehaviour
 {
     public bool isPaused;
 
+    void Start()
+    {
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
+    }
+
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
@@ -15,31 +21,27 @@ public class MainMenu : MonoBehaviour
             {
                 playGame();
             }
-            else
-            {
-                pauseGame();
-            }
         }
     }
 
     public void playGame()
     {
         isPaused = false;
-        SceneManager.LoadScene("Cutscene");
-        //Time.timeScale = 1.0f;
+        SceneManager.LoadScene("GameScene");
+        Time.timeScale = 1.0f;
     }
 
-    public void exitGame()
-    {
-        Application.Quit();
-    }
-
-    public void pauseGame()
+    public void exitToMainMenu()
     {
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
         SceneManager.LoadScene("MainMenu");
         isPaused = true;
-        //Time.timeScale = 0.0f;
+        Time.timeScale = 0.0f;
+    }
+
+    public void exitGame()
+    {
+        Application.Quit();
     }
 }
